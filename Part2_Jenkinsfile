@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                 v2 = input ( 
-                       message: 'ST2 Action',
+                       message: 'Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
                        }
