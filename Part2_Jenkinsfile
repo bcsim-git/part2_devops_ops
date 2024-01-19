@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                 v2 = input ( 
-                       message: 'Action',
+                       message: 'ST2 Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
                        }
@@ -23,17 +23,23 @@ pipeline {
              steps {
                 script {
                    if (v2 == 'Rollback') {
-                   echo 'Rollback Completed'
+                   echo 'ST3 Rollback Completed'
                    } else if (v2 == 'Deploy to Production Environment') {
-  	            echo "Production container updated"
+  	            echo "ST3 Production container updated"
                    }	      
                    }
 	     }
 	  }
 	  stage('Four') {
-               steps {
-	          echo 'Deploy to production environment successfully'
-		}
-	   }
+             steps {
+                script {
+                   if (v2 == 'Rollback') {
+                   echo 'ST4 Rollback Completed'
+                   } else if (v2 == 'Deploy to Production Environment') {
+  	            echo "ST4 Production container updated"
+                   }	      
+                   }
+	     }
+	  }
       }
 }
